@@ -29,7 +29,6 @@ else if %iSyncOpt%==3 (
 else (
     echo Skipped syncing of "%cd%" and "%sSource%\".
 )
-echo=
 
 REM Back sync
 echo=
@@ -53,5 +52,6 @@ else (
     echo Skipped syncing of "%sSource%\" and "%cd%".
 )
 
+echo=
 echo Operation finished, press any key to exit.
 pause > nul
