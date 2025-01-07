@@ -43,7 +43,7 @@ if %iSyncOpt%==1 (
 ) ^
 else if %iSyncOpt%==2 (
     echo Syncing "%sSource%\" with "%cd%"...
-    xcopy /cherikdy "%sSource%\*" "%cd%\"
+    xcopy /cherikdy "%cd%\*" "%sSource%\"
 ) ^
 else if %iSyncOpt%==3 (
     echo Listing differences between "%sSource%\" and "%cd%"...
