@@ -5,8 +5,8 @@ for /d %%f in (*) do (
     if exist "%%f\.git" (
         echo Fetching all updates for "%%f"
         cd "%%f"
-        git fetch origin
-        git pull origin
+        git fetch origin master
+        git pull origin master
         cd ..
         echo=
     )

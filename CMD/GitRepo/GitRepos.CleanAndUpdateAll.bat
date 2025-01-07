@@ -8,8 +8,8 @@ for /d %%f in (*) do (
         git clean -fd
         git stash
         git stash clear
-        git fetch origin
-        git pull origin
+        git fetch origin master
+        git pull origin master
         cd ..
         echo=
     )
