@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<FirstExperience>
+  <oobe>
+    <defaults>
+      <location>244</location>
+      <locale>1033</locale>
+      <keyboard>0409:00000409</keyboard>
+      <timezone>Pacific Standard Time</timezone>
+    </defaults>
+    <hidSetup>
+      <title>Pen Setup</title>
+      <accessoryImagePath>C:\Windows\System32\oobe\info\Default\1033\PenPairing_en-US.png</accessoryImagePath>
+      <accessoryErrorImagePath>C:\Windows\System32\oobe\info\Default\1033\PenError_en-US.png</accessoryErrorImagePath>
+      <accessoryText>Press and hold the top pen button for 5 seconds to enter pairing mode.</accessoryText>
+      <accessoryErrorText>Press and hold the top button for 5 seconds to enter pairing mode.</accessoryErrorText>
+      <accessorySuccessImage>C:\Windows\System32\oobe\info\Default\1033\PenSuccess_en-US.png</accessorySuccessImage>
+      <accessorySuccessText>Pen pairing was successful! Try thes these features later. Click once, Windows Ink Workspace Home. Double-click, Windows Ink Workspace Screen Sketch. Press and hold, Windows Ink Workspace Sticky Notes.</accessorySuccessText>
+    </hidSetup>
+  </oobe>
+</FirstExperience>

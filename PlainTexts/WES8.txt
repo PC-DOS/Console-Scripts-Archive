@@ -1,0 +1,17 @@
+/* EVALUATION */
+
+Toolkit and Evaluation Keys
+ 
+To fully license the Windows Embedded 8 Standard tools, enter the toolkit product key when prompted during startup:
+384GJ-VBT2D-FXWQR-78PD6-PKRBC
+ 
+This product key will activate the tools in perpetuity.
+To boot evaluation images created with the tools, you will need the 180 day evaluation key.
+ 
+ 
+180 Day Evaluation Key
+ 
+To boot evaluation images created with the tools, you will need to install the evaluation key in the image:
+9XGG6-9NYT7-8RQY6-FP7WK-GJDFY
+ 
+Once you have your key, you can use it throughout your organization; however, it should not be shared with 3rd parties.

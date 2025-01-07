@@ -1,0 +1,448 @@
+
+Usage: thor2 -mode [MODE] -[ARGUMENT]... -[FLAG]...
+
+Thor2 aims to provide SW update and miscellaneous R&D operations for WP8 products, Alpha, Collins, Theta, Quattro and Romulus engines.
+
+MODEs:
+
+  Sets mode of operation. Modes are emergency, uefiflash, sdflash, vpl, dump, rnd, retail, ffureader, list_connections and uefiserialflash.
+
+ARGUMENTs:
+
+  -ffufile <filepath>			Sets path to FFU file
+  -sdfile <filepath>			Sets path to SD file
+  -vplfile <filepath>			Sets path to VPL file
+  -conn <connection>			Sets connection endpoint/identifier. E.g. COMx in Windows (where x is number).
+                      			Connection ID notation is controllerID:hub:port. Like 0.0200.0003.0100:0004:0002
+                      			Controller ID notation is the value of each sub strings of PCI of Device Location Paths USB property.
+                      			The values of PCI sub strings are concatenated into resulting value separated by comma.
+                      			For example PCIROOT(0)#PCI(0200)#PCI(0003)#PCI(0100)#USBROOT(0)#USB(1)#USB(5)#USB(6)#USB(1) results 0.0200.0003.0100 as controllerID.
+                      			If omitted, THOR2 tries to auto-detect a connected device.
+                      			Use list_connections mode to findout connected device along connection IDs.
+  -logfile <filepath>			Sets custom log file for THOR2 traces
+
+
+*** arguments for emergency mode ***
+
+  -configfile <filepath>		Sets path to 8974 emergency download configuration file (file should be in XML format).
+                      			All references to binary files in the configuration file should be located in the same directory.
+  -protocol <prot>			Forces usage of specific emergency download protocol. Supported protocols: sahara ( Quattro/Romulus ) and streaming ( Collins / Alpha as default )
+  -mbnfile <filepath>			Sets path to mbn file
+  -hexfile <filepath>			Sets path to QComm HEX flasher file
+  -dumpfileforhexflasher <filepath>	Sets the path to dump file.
+  -dumparea <first sector to read,amount of sectors to read>		
+
+
+*** arguments for uefiflash mode ***
+
+  -partitionname <partition name>	Sets partition name of the GPT to program to.
+  -partitionimagefile <filepath>	Sets path to partition image file to be programmed into the device.
+  -imagefile <filepath>			Sets image file to be programmed into the device.
+  -startsector <first sector to flash>	Sets number of sector from flashing of image begins.
+  -productcodeupdate <CTR code>		Updates product code after successful programming. RM-820 is out-scoped.
+  -looptest <loopCounter>		Tests FFU programming in a loop while staying in the flash mode between programming trials.
+
+
+  -timeout <time in seconds>		Waiting time of device to appear.
+
+
+  -maxtransfersizekb <block size in kb>		Max programming block size.
+
+
+  -dplfile <filepath>			Sets path to DPL file.
+  -batterylevel <value>			Sets minimum battery level that flashing starts.
+*** arguments for uefiserialflash mode ***
+
+  -serialflash <loopCounter> 		FFU programming of multiple of devices. Multiple of devices can be programmed in serial one after one.
+
+
+*** arguments for dump mode ***
+
+  -uefifile <filepath>			Sets path to UEFI file to be loaded into the device.
+  -partitionname <name>			Sets name of partition to be read out from the device.
+  -dumparea <first sector to read,amount of sectors to read>		
+
+
+*** arguments for rnd mode ***
+
+  -gptfile <filepath>			Sets path to GPT image file.
+  -rawmsgreq  <hex message> 		Message to be send to the device in hexadecimal. Messaging protocol could be NOK, JSON or user defined.
+  -rawmsgresp <hex message> 		Expected response message to '-rawmsgreq <hex message>' request message. Returns a zero (0) if match between request and response.
+  -asciimsgreq  <ascii message> 	Message to be send to the device in ASCII. Messaging protocol could be NOK, JSON or user defined.
+  -jsonfile <filepath>			Sets path to JSON file.
+  -asciimsgresp <ascii message> 	Expected response message to '-asciimsgreq <ascii message>' request message. Returns a zero (0) if match between request and response.
+
+  -do_authentication -sdauthenticationtype <production|tucson>.
+*** arguments for retail mode ***
+
+  -nvifile <filepath>			Sets path to NVI file.
+  -writerdc <filepath>			Writes RDC from the given file to the device.
+  -readrdc <filepath>			Reads RDC to the given file from device.
+  -erasepartition <name>		Sets name of partition to be erased from the device.
+
+*** arguments for ffureader mode ***
+
+  -partitionimagefile <filepath>	Sets path to partition image file.
+
+  -filedir <dir path>	Sets path to directory, where files are dumped.
+
+FLAGs:
+
+*** flags for emergency mode ***
+
+  -skipprotocoldetection	Skips automatic detection of emergency protocol when connection is opened. Can be used in conjunction
+                      		with argument "-protocol sahara"
+  -skipffuflash			Skips FFU flashing at the end of emergency download
+  -skippayloadsending		Skips payload sending of rnd emergency download
+  -use_legacy_hex		Collins and Alpha emergency. Uses legacy HEX flasher.
+  -orig_gpt			Collins and Alpha emergency. Programs MBN image.
+  -debug			Enables raw message tracing (during Sahara protocol stage)
+
+*** flags for uefiflash mode ***
+
+  -skip_write			Secure FFU flashing. Programming sequence executed without programming to the storage device.
+  -skip_hash			Secure FFU flashing. Skips the hash calculation of the payload data.
+  -skip_id_check		Secure FFU flashing. Skips Platform ID check between the device and FFU file.
+  -skip_signature_check		Secure FFU flashing. Skips signature check of secure header of FFU file.
+  -skip_reboot_on_failure	Secure FFU flashing. Skips reboot option if flashing fails.
+  -do_factory_reset		Restores Modem FSG partition to Modem FS1 and erases Modem FS2.
+  x			Secure FFU flashing. Normal programming sequence executed followed by read and verify.
+  -detect_device_after_reboot	Detects device after reboot.
+  -disable_msg_timeout		Secure FFU flashing. Disables messaging timeout of UEFI FlashApp
+  -skip_flash			Secure FFU flashing. Boots to the UEFI FlashApp without programming
+  -skip_rkh_check		Secure FFU flashing. Skips the Root Key Hash check between the device and FFU file
+  -use_crc_in_sffu_prog		Secure FFU flashing. CRC32 is used to check integrity of the payload data
+  -erase_data			Secure FFU flashing. Erases the Data partition a.k.a UDA of Windows Phone
+  -skip_preserve_dpp		Skips overwriting prevention of DPP partition. By default programming will fail if the DPP partition of FFU file contains data.
+  -reboot			Reboots the device, if possible
+  -power_off			Powers off the device after the USB cable is disconnected.
+  -sync_msging_sffu_prog	Secure FFU flashing. Uses sync messaging between PC and device.
+  -do_full_nvi_update		Applies the full NVI settings after successful programming. During the first boot after programming the NVI updater updates the NV items.
+  -unbufferedfileio		Use unbuffered file I/O in case of SFFU programming. Aims to fix issues if FFU file is programmed from a network share. 
+  -skip_backup_restore		Secure FFU flashing. Skips backup and restore. By default backups of MODEM_FSG, MODEM_FS1, MODEM_FS2, SSD and
+                      		DPP partitions to the RAM of device and restores them after successful programming of Windows Phone.
+  -show_detailed_progress	Shows detailed progress info (transferred bytes and transfer speed). 
+  -trace_usb			Prints out debugging traces of WinUSB client. 
+  -use_boot_to_flsapp_json	Re-boots device into the flash mode from the normal/test mode. 
+  -skip_exit_on_post_op_failure	Executes all specified post flash operations (factory reset, full NVI update etc.), even if failures occur.
+
+  -restorepartition	Restores backup partition into the eMMC.
+*** flags for dump mode ***
+
+  -dump_via_gpt			Reads out the content of eMMC of Windows Phone. The reading is based on the GPT of device.
+                      		This is excluded from the official Uefi FlashApp.
+
+  -dump_via_sector		Reads out the content of eMMC of Windows Phone. The reading is based on -dumparea argument. 
+                      		This is excluded from the official Uefi FlashApp.
+
+  -skip_read			Skips read in case of reading out the content of eMMC of Windows Phone. 
+                      		This enables to load and execute an UEFI app from PC to device.
+
+*** flags for rnd mode ***
+
+  -bootmsc			Boots the device into the USB mass storage mode.
+  -detect_device_after_reboot	Detects device after reboot.
+  -readjtagserial		Reads serial number of JTAG.
+  -bootmmos			Boots the device into the MMOS.
+  -normalmode			Operations are done in the normal mode of device.
+  -uefitests			Tests DSS UEFI apps of device.
+  -delgpt			Clears the GPT of device.
+  -skip_gpt_check		The R&D mode validates the GPT. Use this flag to skip the check.
+  -bootflashapp			Boots to UEFI Flash App.
+  -bootphoneinfoapp		Boots to UEFI Phone Info App.
+  -boot_edmode			Boots to Emergency Download mode.
+  -read_public_id		Reads public ID from the device.
+  -power_off			Powers off the device after the USB cable is disconnected.
+  -read_charging_status		Reads charging status from the device.
+  -read_final_config		Reads final config from the device.
+  -skip_com_scan		Skips scanning of COM ports.
+  -reboot			Reboots the device, if possible
+  -do_rpmb			Executes RPMB provisioning procedure.
+  -do_uefikeys_rd		Executes UEFI Keys provisioning procedure for RD.
+  -do_uefikeys_prod		Executes UEFI Keys provisioning procedure for production.
+  -dump_gpt			Executes parsing of GPT image file.
+  -flashappbuildinfo		Reads build related information about the UEFI flash application.
+  -uefisecurebootinfo		Reads information about the UEFI secure boot.
+  -readphoneinfo		Reads Phone info.
+  -continueboot			Continue boot.
+  -readdeviceinfo		Reads miscellaneous information from device.
+  -readrpmbstatus		Read RPMB provisioning status.
+  -readisswversion		Reads ISSW version and compilation info.
+  -do_factory_reset		Restores Modem FSG partition to Modem FS1 and erases Modem FS2.
+  -do_authentication		Authenticates device. The default authentication level is
+				production. Level can be changed by argument sdauthenticationtype.
+  -bootlumiabootmgr		(Re-)Boots to Boot Manager.
+  -bootnormalmode		Boots to the normal mode / Windows Phone OS.
+  -dump_mbn			Chops up MBN image into files according to the GPT of MBN image.
+  -readcid			Reads card identification of eMMC, manufacturer, OID and PSN.
+  -validatessdhash		Validates SSD integrity.
+  -relock			GDR3 devices which have been retail unlocked with MSFT packages
+				are not booting if Blue SW is updated via FFU flashing.
+				Re-lock operation should be done prio to flashing Blue FFU.
+  -oddt				Connection created to ODDT Control, if it is found.
+
+  -readramsize			Reads size of system memory.
+
+*** flags for retail mode ***
+
+  -reboot			Reboots the device, if possible
+  -eraserdc			Erases the RDC from the device.
+  -power_off			Powers off the device after the USB cable is disconnected.
+
+*** flags for uefiserialflash mode ***
+
+  -power_off			Powers off the device after the USB cable is disconnected.
+
+*** flags for ffureader mode ***
+
+  -dump_gpt			Dumps GPT(s) from FFU file.
+  -dump_partitions		Dumps partitions into files according to the GPT of FFU file.
+
+*** miscellaneous ***
+
+  -skip_logfile			Skips logfile creation.
+  -mode userauthentication -passcode securitycode [-server saisec001] [-securesessionfile mysession.bin ]		Authentication with VIP Access, creates user's securesessionid file
+  /?				Displays this help and exits.
+  --help			Displays this help and exits.
+  --help -mode [ MODE ]			Displays examples according to defined mode and exits.
+  --version			Displays version information and exits.
+
+
+
+*-*-* examples *-*-*
+
+
+
+*-*-* Uefiflash examples *-*-*
+
+SFFU programming:
+  thor2 -mode uefiflash -ffufile "RM821_Production_flash_rnd_signed.ffu"
+
+SFFU programming and product code update:
+  thor2 -mode uefiflash -ffufile "RM821_Production_flash_rnd_signed.ffu" -productcodeupdate 01234567 
+
+SFFU programming and Full NVI update:
+  thor2 -mode uefiflash -ffufile "RM821_Production_flash_rnd_signed.ffu" -do_full_nvi_update -do_factory_reset
+
+SFFU programming along product code and Full NVI updates:
+  thor2 -mode uefiflash -ffufile "RM821_Production_flash_rnd_signed.ffu" -productcodeupdate 01234567 -do_full_nvi_update -do_factory_reset -reboot
+
+SFFU programming and battery level check:
+  thor2 -mode uefiflash -ffufile "RM821_Production_flash_rnd_signed.ffu" -batterylevel 10
+
+Partition programming. Programs uefi.mbn partition image file into uefi partition:
+  thor2 -mode uefiflash -partitionname uefi -partitionimagefile "uefi.mbn"
+
+Image programming. Programs GPT:
+  thor2 -mode uefiflash -startsector 0 -imagefile "gpt.bin"
+
+Partition programming. Programs sbl1.mbn partition image file into sbl1 partition:
+  thor2 -mode uefiflash -partitionname sbl1 -partitionimagefile "sbl1.mbn"
+
+Partition restoring. Restores dpp.mbn partition image file into dpp partition:
+  thor2 -mode uefiflash -partitionname dpp -partitionimagefile "dpp.mbn" -restorepartition -skip_gpt_check
+
+MMOS programming:
+  thor2 -mode uefiflash -mmosfile "mmos.wim"
+
+MMOS programming according to DPL file:
+  thor2 -mode uefiflash -dplfile "DPL_RM974.xml"
+
+
+
+*-*-* Emergency examples *-*-*
+
+Emergency and SFFU programming for Quattro and Romulus:
+  thor2 -mode emergency -configfile "emergency_config.xml" -ffufile "Production_flash.ffu"
+
+Emergency programming for Quattro and Romulus:
+  thor2 -mode emergency -configfile "8974_emergency_config.xml" -ffufile "QUMA_Production_flash.ffu" -skipffuflash
+
+Emergency and SFFU programming for Quattro and Romulus ( RnD ) :
+  thor2 -mode emergency -hexfile "MPRG8974_fh_v1_0.mbn" -edfile "RM937_1025.0001.1.1.ed" -ffufile "Production_flash.ffu"
+
+Emergency and SFFU programming for Collins and Alpha:
+  thor2 -mode emergency -hexfile "FAST8960.hex" -mbnfile "8960_msimage_uefi.mbn" -ffufile "RM821_Production_flash_rnd_signed.ffu"
+
+Emergency programming for Collins and Alpha ( GPT from FFU file ):
+  thor2 -mode emergency -hexfile "FAST8960.hex" -mbnfile "8960_msimage_uefi.mbn" -ffufile "RM821_Production_flash_rnd_signed.ffu" -skipffuflash
+
+Emergency programming for Collins and Alpha ( MBN file only ):
+  thor2 -mode emergency -hexfile "FAST8960.hex" -mbnfile "8960_msimage_uefi.mbn" -orig_gpt
+
+Reads content of eMMC with HEX flasher. The dump area is in sectors; first_sector_to_read,amount_of_sectors_to_read. Size of one sector is 512 bytes.
+  The official HEX flasher does not support reading. Thus a RnD version is needed for that.
+  Reads out the GPT of device:r
+  thor2 -mode emergency -configfile "8974_emergencyflash_config.xml" -dumparea 0,34 -dumpfileforhexflasher "gpt.bin"
+
+
+
+*-*-* Rnd mode examples *-*-*
+
+Read phone info:
+  thor2 -mode rnd -readphoneinfo
+
+Boot to the USB MSC mode:
+  thor2 -mode rnd -bootmsc -skip_com_scan
+
+  Note: PC will freeze, if SBL3 code is used and MSC code is missing from SBL3
+
+Boot to the MMOS:
+  thor2 -mode rnd -bootmmos -skip_com_scan
+
+Boot to the Emergency Download mode:
+  thor2 -mode rnd -skip_gpt_check -boot_edmode
+
+Delete the GPT of device:
+  thor2 -mode rnd -delgpt -skip_com_scan
+
+Execute DSS UEFI app tests:
+  thor2 -mode rnd -uefitests -skip_com_scan
+
+Reboot the device:
+  thor2 -mode rnd -reboot
+
+Power off the device:
+  thor2 -mode rnd -power_off
+
+Read public ID from the device:
+  thor2 -mode rnd -read_public_id -skip_com_scan
+
+Chop up MBN image into files according to the GPT:
+  thor2 -mode rnd -mbnfile "8960_msimage_uefi.mbn" -dump_mbn
+
+Extract ed payload image:
+  thor2 -mode rnd -edfile "ed_payload.ed" -dump_edpayload
+
+Executes UEFI Keys provisioning procedure for RD:
+  thor2 -mode rnd -do_uefikeys_rd -skip_com_scan
+
+Executes UEFI Keys provisioning procedure for production:
+  thor2 -mode rnd -do_uefikeys_prod -skip_com_scan
+
+Executes RPMB provisioning procedure:
+  thor2 -mode rnd -do_rpmb -skip_com_scan
+
+Executes parsing of GPT:
+  thor2 -mode rnd -gptfile "gpt.mbn" -dump_gpt -skip_com_scan
+
+Raw messaging. Disables messaging timeout (NOKD):
+  thor2 -mode rnd -rawmsgreq 4e4f4b44 -rawmsgresp 4e4f4b44 -skip_com_scan
+
+Raw messaging. Hello (NOKI):
+  thor2 -mode rnd -rawmsgreq 4e4f4b49 -rawmsgresp 4e4f4b49 -skip_com_scan
+
+Raw messaging. Reboot (NOKR):
+  thor2 -mode rnd -rawmsgreq 4e4f4b52 -skip_com_scan
+
+ASCII messaging. Disables messaging timeout:
+  thor2 -mode rnd -asciimsgreq NOKD -asciimsgresp NOKD -skip_com_scan
+
+ASCII messaging. Hello:
+  thor2 -mode rnd -asciimsgreq NOKI -asciimsgresp NOKI -skip_com_scan
+
+ASCII messaging. Reboot:
+  thor2 -mode rnd -asciimsgreq NOKR -skip_com_scan
+
+Reads serial number of JTAG:
+  thor2 -mode rnd -readjtagserial -skip_com_scan
+
+Reads RPMB provisioning status:
+  thor2 -mode rnd -readrpmbstatus -skip_gpt_check
+
+Reads PSN:
+  thor2 -mode rnd -readpsn -skip_com_scan
+
+Sends JSON messages from JSON file to MMOS / label app:
+  thor2 -mode rnd -jsonfile "json_messages_file.json"
+
+Sends JSON messages from JSON file to normal mode / NCSd:
+  thor2 -mode rnd -jsonfile "json_messages_file.json -normalmode"
+
+Device authentication:
+  thor2 -mode rnd -do_authentication -sdauthenticationtype production -skip_com_scan -skip_gpt_check [-server saisec001.europe.nokia.com] [-securesessionfile mysession.sessionid]"
+
+Reads CID (manufactuter of eMMC):
+  thor2 -mode rnd -readcid -skip_com_scan
+
+Validates SSD integrity:
+  thor2.exe -mode rnd -validatessdhash -skip_gpt_check
+
+Re-lock:
+  thor2.exe -mode rnd -relock -skip_gpt_check
+
+Reads ISSW version and compilation info:
+  thor2.exe -mode rnd -readisswversion -skip_gpt_check
+
+
+VPL programming:
+  thor2 -mode vpl -vplfile "RM821_059R7J4_1232.5951.1249.1003_016.vpl"
+
+SD card programming:
+  thor2 -mode sdflash -sdfile "RM821_059R7J4_1232.5951.1249.1003_016.img"
+
+
+
+*-*-* ffureader mode examples *-*-*
+
+
+Read FFU file and dump partitions into files according to the GPT:
+  thor2 -mode ffureader -ffufile "RM821_Production_flash_rnd_signed.ffu" -dump_partitions
+
+
+Read FFU file and dump partitions into files into defined directory according to the GPT:
+  thor2 -mode ffureader -ffufile "RM821_Production_flash_rnd_signed.ffu" -dump_partitions -filedir c:\temp
+
+Read FFU file and dump GPT(s) into files:
+  thor2 -mode ffureader -ffufile "RM821_Production_flash_rnd_signed.ffu" -dump_gpt
+
+Read the RKH from partition image file: 
+  thor2 -mode ffureader -partitionimagefile "SBL1.mbn"
+
+
+Read USB connections and print the result:
+  thor2 -mode list_connections
+
+Programs the same FFU file into one or multible devices. User needs to change devices between programming states:
+  thor2 -mode uefiserialflash -ffufile "RM821_Production_flash_rnd_signed.ffu" -serialflash 50 -power_off
+
+
+
+*-*-* dump mode examples *-*-*
+
+Reads content of eMMC with UEFI flash app. Dumps whole eMMC based on the GPT:
+  thor2 -mode dump -uefifile "FlashApp_debug_dump.efi" -dump_via_gpt
+
+Reads content of eMMC with UEFI flash app. Dumps eMMC based on the dumparea argument.
+  The dump area is in sectors; first_sector_to_read,amount_of_sectors_to_read. Size of one sector is 512 bytes.
+  Reads out the GPT of device:
+  thor2 -mode dump -uefifile "FlashApp_debug_dump.efi" "-dumparea 0,34" -dump_via_sector
+
+Reads content of eMMC with UEFI flash app based on partitionname argument. Reads uefi partition image file from uefi partition:
+  thor2 -mode dump -uefifile "FlashApp_debug_dump.efi" -dump_via_gpt -partitionname uefi
+
+
+
+*-*-* Retail mode examples *-*-*
+
+Erases partition based on name of partition. Erases Data partition:
+  thor2 -mode retail -erasepartition Data
+
+Reads the RDC from device into the file:
+  thor2 -mode retail -readrdc "rdc.bin"
+
+Writes the RDC into the device from file:
+  thor2 -mode retail -writerdc "rdc.bin"
+
+Erases the RDC from device:
+  thor2 -mode retail -eraserdc
+
+Sends NVIs messages from nvi file to MMOS / label app:
+  thor2 -mode retail -nvifile "CustomerNvi.nvi"
+
+Sends NVIs messages from nvi file to normal mode / NCSd:
+  thor2 -mode retail -nvifile "CustomerNvi.nvi -normalmode"
+
+See more in http://wikis.in.nokia.com/WindowsPhoneFlashing/Thor2Flasher 
+
+Copyright @ 2014 Microsoft Mobile

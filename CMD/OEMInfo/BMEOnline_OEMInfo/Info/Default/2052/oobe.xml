@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<FirstExperience>
+  <oobe>
+    <defaults>
+      <location>45</location>
+      <locale>2052</locale>
+      <keyboard>0804:{81D4E9C9-1D3B-41BC-9E6C-4B40BF79E35E}{FA550B04-5AD7-411F-A5AC-CA038EC515D7}</keyboard>
+      <timezone>China Standard Time</timezone>
+    </defaults>
+    <hidSetup>
+      <title>触控笔设置</title>
+      <accessoryImagePath>C:\Windows\System32\oobe\info\Default\2052\PenPairing_zh-CN.png</accessoryImagePath>
+      <accessoryErrorImagePath>C:\Windows\System32\oobe\info\Default\2052\PenError_zh-CN.png</accessoryErrorImagePath>
+      <accessoryText>请按住触控笔顶部按钮 5 秒钟以进入配对模式。</accessoryText>
+      <accessoryErrorText>配对未成功。若要稍后配对触控笔， 请转到 surface.com/support</accessoryErrorText>
+      <accessorySuccessImage>C:\Windows\System32\oobe\info\Default\2052\PenSuccess_zh-CN.png</accessorySuccessImage>
+      <accessorySuccessText>触控笔已成功配对！请稍后尝试这些功能。单击，Windows Ink 工作区主页。双击，Windows Ink 工作区屏幕草图。 长按，Windows Ink 工作区便笺。</accessorySuccessText>
+    </hidSetup>
+  </oobe>
+</FirstExperience>

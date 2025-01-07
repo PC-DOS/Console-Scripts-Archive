@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\0\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes]
+"SpecialColor"=dword:fff5af00

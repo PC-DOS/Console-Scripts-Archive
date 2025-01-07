@@ -1,0 +1,21 @@
+Visual Studio 2010 (Windows Phone 7 SDK)
+YDK44-2WW9W-QV7PM-8P8G8-FTYDF
+
+Visual Studio 2012 (Windows Phone 8 SDK)
+H27PY-QK2CQ-6H364-W8YRW-FDXB9
+
+Visual Studio 2013 Ultimate Edition
+BWG7X-J98B3-W34RT-33B3R-JVYW9
+
+Visual Studio 2015 Professional Edition
+HMGNV-WCYXV-X7G9W-YCX63-B98R2
+
+Visual Studio 2015 Enterprise Edition
+HM6NR-QXX7C-DFW2Y-8B82K-WTYJV
+2XNFG-KFHR8-QV3CP-3W6HT-683CH
+
+Visual Studio 2017 Professional Edition
+KBJFW-NXHK6-W4WJM-CRMQB-G3CDH
+
+Visual Studio 2017 Enterprise Edition
+NJVYC-BMHX2-G77MM-4XJMR-6Q8QF
