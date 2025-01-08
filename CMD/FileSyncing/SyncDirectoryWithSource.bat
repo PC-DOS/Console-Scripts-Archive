@@ -2,15 +2,15 @@
 
 cd %~dp0
 
-echo This script will sync current directory with source directory
+echo This script will sync destination directory with source directory
 
 echo=
 echo Please input source directory:
 set /p sSource=
 
-REM echo=
-REM echo Please input destination directory:
-set sDest=%cd%
+echo=
+echo Please input destination directory:
+set /p sDest=
 
 REM Front sync
 echo=

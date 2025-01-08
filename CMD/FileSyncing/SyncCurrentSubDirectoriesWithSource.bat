@@ -2,15 +2,15 @@
 
 cd %~dp0
 
-echo This script will sync child directories in destination directory with directories (with same name) in source directory
+echo This script will sync child directories in current directory with directories (with same name) in source directory
 
 echo=
 echo Please input source directory:
 set /p sSource=
 
 REM echo=
-echo Please input destination directory:
-set /p sDest=
+REM echo Please input destination directory:
+set sDest=%cd%
 
 REM Front sync
 echo=
