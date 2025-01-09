@@ -5,4 +5,4 @@ Windows TPC:
  W3T3V-3WMVM-YMTD6-87V3K-WMVQW
  BXDQD-V3FT3-BCGK3-9P6H3-TXXH7
 
-WES7�ٶ����ʹ��180�죬���ں������Ҫ������ȥ��������Ҫ���°�װ��ֻ��Ҫ����΢�����������淽����ִ��һ��slmgr.vbs �Crearm���ü���Ϳ�����ʹ��180�죬�����������ü���6�Σ���͵��ڿ������ʹ��3�ꡣ3��󣬰���΢�����������ķ�������ע����HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform\"SkipRearm"=dword:00000000��ֵ����Ϊ1���ֿ������ü�����������ظ�8�Σ���ˣ��ٷ�WES7�������ʹ��7�ꡣ��Ȼ�����°�װһ�£��ֿ���ʹ��7�ꡣ
+WES7官定免费使用180天，到期后如果需要再用下去，并不需要重新安装，只需要按照微软公布的正规方法：执行一下slmgr.vbs –rearm重置激活，就可以再使用180天，可以这样重置激活6次，这就等于可以免费使用3年。3年后，按照微软官网公布的方法，将注册表项：HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform\"SkipRearm"=dword:00000000的值更改为1，又可以重置激活，可以这样重复8次，因此，官方WES7可以免费使用7年。当然，重新安装一下，又可以使用7年。
