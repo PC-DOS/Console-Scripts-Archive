@@ -8,7 +8,7 @@ echo=
 echo Please input source directory:
 set /p sSource=
 
-REM echo=
+echo=
 echo Please input destination directory:
 set /p sDest=
 
