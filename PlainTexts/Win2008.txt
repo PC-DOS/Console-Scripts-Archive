@@ -1,4 +1,4 @@
-éšä¾¿æ‰¾ä¸€ä¸ªï¼Œæ€»æœ‰ä¸€ä¸ªèƒ½ç”¨:
+Ëæ±ãÕÒÒ»¸ö£¬×ÜÓĞÒ»¸öÄÜÓÃ:
 
 P36VD-22V68-JVM2W-DBC77-MK98W
 FJCXR-2D9YR-YD2DR-92DMX-HJF9D
@@ -7,12 +7,12 @@ KG6YY-RRFP4-W9HWK-GHK38-7F97X
 YTKP9-MWBPB-RJ6MY-CXTDG-FKTYH
 
 
-Windows Server 2008 Datacenter and Windows Server 2008 for Itanium-based Systemsï¼ˆé€šç”¨å¯†ç ~é€šç”¨ã€‚ã€‚ã€‚ã€‚ã€‚ï¼‰
+Windows Server 2008 Datacenter and Windows Server 2008 for Itanium-based Systems£¨Í¨ÓÃÃÜÂë~Í¨ÓÃ¡£¡£¡£¡£¡££©
 
 TJMM6-8MPRG-3JVTK-Q8TM4-73TYX
 
 
-Windows Server 2008 Standardï¼ˆç®€ä½“ä¸­æ–‡æ­£å¼é›¶å”®æ ‡å‡†ç‰ˆï¼‰
+Windows Server 2008 Standard£¨¼òÌåÖĞÎÄÕıÊ½ÁãÊÛ±ê×¼°æ£©
 
 GRJK2-3YMGP-QH4WT-W69P7-49DXC
 YVYRH-KHMW9-2BXG7-8MC2R-3X3VQ
@@ -44,7 +44,7 @@ J6CH7-6KFYG-7Q2KR-3RTXX-B896R
 76JKF-FQR6W-2KX2J-4PVB6-24TH6
 
 
-Windows Server 2008 Enterprise (ç®€ä½“ä¸­æ–‡æ­£å¼ä¼ä¸šç‰ˆï¼‰
+Windows Server 2008 Enterprise (¼òÌåÖĞÎÄÕıÊ½ÆóÒµ°æ£©
 
 YV6BQ-YR3DC-7JM83-R44J8-V7XVM
 2PCB6-H32MQ-DQFD4-JR63C-CB962
@@ -89,7 +89,7 @@ HT94V-FVV29-KCVCY-C8T9F-HJ2Y4
 
 
 
-Windows Server 2008 Datacenter ï¼ˆç®€ä½“ä¸­æ–‡æ­£å¼æ•°æ®ä¸­å¿ƒç‰ˆï¼‰
+Windows Server 2008 Datacenter £¨¼òÌåÖĞÎÄÕıÊ½Êı¾İÖĞĞÄ°æ£©
 
 7PH2P-HDJ9P-9BP8F-DVBH4-6JRMQ
 PQV8Q-RY99K-GWCR9-7F9VK-RFQ74
@@ -115,7 +115,7 @@ TJMM6-8MPRG-3JVTK-Q8TM4-73TYX
 
 
 
-Windows Web Server 2008 ï¼ˆç®€ä½“ä¸­æ–‡æ­£å¼ç½‘ç«™æœåŠ¡å™¨ç‰ˆï¼‰
+Windows Web Server 2008 £¨¼òÌåÖĞÎÄÕıÊ½ÍøÕ¾·şÎñÆ÷°æ£©
 
 CY9XK-MXMMM-TBBPF-V3QMX-C23WY
 CXGWX-RXCVX-CM4TH-9PM2X-FQ6BX
@@ -126,7 +126,7 @@ PMDCP-KBFFY-67X3P-YYDRK-YJKQ6
 
 
 
-Windows Server 2008 for Itanium-Based Systems ï¼ˆç®€ä½“ä¸­æ–‡æ­£å¼å®‰è…¾ç‰ˆï¼‰
+Windows Server 2008 for Itanium-Based Systems £¨¼òÌåÖĞÎÄÕıÊ½°²ÌÚ°æ£©
 
 YFH7J-FXQP6-XCT8K-WKXR6-X4M4G
 CYYR9-QDT6Q-43VHY-29QRC-8FJGM
