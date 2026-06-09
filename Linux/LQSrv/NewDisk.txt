@@ -1,0 +1,8 @@
+cd /media
+sudo mkdir ./dataX
+
+# Avoid permission confliction
+sudo chown root:users ./dataX
+
+# Only creator can access
+sudo chmod -R 750 ./dataX
