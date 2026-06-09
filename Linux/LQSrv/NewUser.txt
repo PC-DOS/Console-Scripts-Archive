@@ -3,6 +3,7 @@ sudo mkdir ./newuser
 
 sudo useradd -d /media/dataX/newuser -m -s /bin/bash newuser
 sudo usermod -aG users newuser
+sudo passwd newuser
 
 sudo chown -R newuser ./newuser
 sudo chmod -R 750 ./newuser
