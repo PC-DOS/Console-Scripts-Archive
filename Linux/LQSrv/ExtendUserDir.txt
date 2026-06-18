@@ -1,0 +1,4 @@
+cd /media/dataX
+sudo mkdir ./newuser
+sudo chown -R newuser:newuser ./newuser
+sudo chmod -R 750 ./newuser
