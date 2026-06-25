@@ -9,3 +9,5 @@ sudo rsync -avHAX /data_bak /data
 sudo mdadm -D /dev/mdXXX
 # Stop virtual RAID
 sudo mdadm -S /dev/mdXXX
+# New RAID
+sudo mdadm --create --verbose /dev/md/sas_raid0_0 --level=0 --raid-devices=5 /dev/sd[c-g]
