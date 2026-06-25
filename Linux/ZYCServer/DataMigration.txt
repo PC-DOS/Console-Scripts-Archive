@@ -1,0 +1,11 @@
+# Old disk mounted to: /data_bak
+# New disk mounted to: /data
+
+# Rsync copying
+sudo rsync -avHAX /data_bak /data
+
+# Remove virtual RAID
+# Check info
+sudo mdadm -D /dev/mdXXX
+# Stop virtual RAID
+sudo mdadm -S /dev/mdXXX
