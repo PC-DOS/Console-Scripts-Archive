@@ -1,0 +1,11 @@
+# Need to grant /media/dataX/data_root/shared_data to user1 (original owner) and user2
+# While both users can access /media/dataX/ already
+
+su
+addgroup sharing_X
+usermod -aG sharing_X user1
+usermod -aG sharing_X user2
+cd /media/dataX/
+chown user1:sharing_X ./data_root
+cd ./data_root
+chown -R user1:sharing_X ./shared_data
